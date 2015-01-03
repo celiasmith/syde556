@@ -1,0 +1,22 @@
+body {
+    background-color: #BBBBFF;
+}
+.reveal p {
+}
+.reveal div.rendered_html {
+    font-size: larger;
+}
+
+.reveal ul, ol {
+    line-height: 150%;
+}
+div.output_area pre {
+}
+div.output_stderr {
+}
+.reveal table th, .reveal table td {
+}
+
+div.prompt {
+   display:none;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>D3 Test</title>
+        <script type="text/javascript" src="d3/d3.v3.js"></script>
+        <style type="text/css">
+svg {
+    background-color: #dddddd;
+}    
+
+        </style>
+    </head>
+    <body>
+        <script type="text/javascript">
+var width=800;      // screen size (16:9 ratio)
+var height=450;     // screen size
+
+
+var filterStdDev=5;   // pixel width of the fading for the neuron glow
+
+var axonSpikeX=35;    // size of the glow for the axon
+var axonSpikeY=35;
+
+var dendSpikeX=20;    // size of the glow for the dendrite
+var dendSpikeY=20;
+
+var glowStartAlpha=0.1;  // opacity at beginning of spike appearance
+var glowMidAlpha=1.0;    // opacity at middle of spike appearance
+var glowEndAlpha=0.1;    // opacity at end of spike appearance
+
+var color="yellow";      // color of spike glow (can be any html color)
+
+var minSpikeTime=600;    // milliseconds between spikes (minimum)
+var maxSpikeTime=1600;    // milliseconds between spikes (maximum)
+var spikeTravelTime=2000;// milliseconds for a spike to travel path
+
+
+var svg = d3.select("body").append("svg");
+
+svg.attr("width",width).attr("height", height);
+
+var neuron=svg.append("image")
+    .attr("xlink:href", "aneuron.png")
+    .attr("width", width)
+    .attr("height", height);    
+
+
+filter=svg.append("defs").append("filter")
+    .attr("id","blur").attr("x","-50%").attr("y","-50%").attr("width","200%").attr("height","200%")
+filter.append("feGaussianBlur").attr("stdDeviation",filterStdDev);    
+
+function make_spike(x, y, w, h, angle) {
+    e=svg.append("ellipse")
+        .attr("fill",color).attr("opacity",glowStartAlpha)
+        .attr("cx",x).attr("cy",y).attr("rx",w/2).attr("ry",h/2).attr("filter","url(#blur)").attr("transform","rotate("+angle+",100,200)");
+    return e;
+}
+
+
+function spike_train() {
+    spike=make_spike(200, 180, axonSpikeX, axonSpikeY, -1);
+    spike.transition().ease('linear').duration(spikeTravelTime/2).attr("cx",450).attr("opacity",glowMidAlpha)
+         .transition().ease('linear').duration(spikeTravelTime/2).attr("cx",700).attr("opacity",glowEndAlpha)
+         .remove();
+    setTimeout(spike_train, Math.random()*(maxSpikeTime-minSpikeTime)+minSpikeTime);
+}
+
+function spike_train2() {
+    spike=make_spike(-100, 160, dendSpikeX, dendSpikeY, 70);
+    spike.transition().ease('linear').duration(spikeTravelTime/2).attr("cx",25).attr("opacity",glowMidAlpha)
+         .transition().ease('linear').duration(spikeTravelTime/2).attr("cx",150).attr("opacity",glowEndAlpha)
+         .remove();
+    setTimeout(spike_train2, Math.random()*(maxSpikeTime-minSpikeTime)+minSpikeTime);
+}
+
+function spike_train3() {
+    spike=make_spike(0, 190, dendSpikeX, dendSpikeY, -20);
+    spike.transition().ease('linear').duration(spikeTravelTime/2).attr("cx",75).attr("opacity",glowMidAlpha)
+         .transition().ease('linear').duration(spikeTravelTime/2).attr("cx",150).attr("opacity",glowEndAlpha)
+         .remove();
+    setTimeout(spike_train3, Math.random()*(maxSpikeTime-minSpikeTime)+minSpikeTime);
+}
+
+function spike_train4() {
+    spike=make_spike(-200, 240, dendSpikeX, dendSpikeY, -70);
+    spike.transition().ease('linear').duration(spikeTravelTime/2).attr("cx",-25).attr("opacity",glowMidAlpha)
+         .transition().ease('linear').duration(spikeTravelTime/2).attr("cx",150).attr("opacity",glowEndAlpha)
+         .remove();
+    setTimeout(spike_train4, Math.random()*(maxSpikeTime-minSpikeTime)+minSpikeTime);
+}
+
+function spike_train5() {
+    spike=make_spike(-200, 240, dendSpikeX, dendSpikeY, -90);
+    spike.transition().ease('linear').duration(spikeTravelTime/2).attr("cx",-25).attr("opacity",glowMidAlpha)
+         .transition().ease('linear').duration(spikeTravelTime/2).attr("cx",150).attr("opacity",glowEndAlpha)
+         .remove();
+    setTimeout(spike_train5, Math.random()*(maxSpikeTime-minSpikeTime)+minSpikeTime);
+}
+
+
+
+
+
+spike_train();
+spike_train2();
+spike_train3();
+spike_train4();
+spike_train5();
+     
+        </script>
+    </body>
+</html>

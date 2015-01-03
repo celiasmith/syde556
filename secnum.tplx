@@ -1,0 +1,7 @@
+((*- extends 'latex_article.tplx' -*))
+
+((* block h1 -*))section*((* endblock h1 -*))
+((* block h2 -*))subsection*((* endblock h2 -*))
+((* block h3 -*))subsubsection*((* endblock h3 -*))
+((* block h4 -*))paragraph*((* endblock h4 -*))
+((* block h5 -*))subparagraph*((* endblock h5 -*))
