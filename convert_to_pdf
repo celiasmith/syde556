@@ -1,3 +1,0 @@
-ipython nbconvert Assignment\ 1.ipynb --template=secnum.tplx --to latex --post PDF --SphinxTransformer.author='Terry Stewart'
-ipython nbconvert Assignment\ 2.ipynb --template=secnum.tplx --to latex --post PDF --SphinxTransformer.author='Terry Stewart'
-
