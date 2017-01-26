@@ -1,0 +1,75 @@
+digraph G {
+ 
+        rankdir=LR;
+	    splines=line;
+        nodesep=.2;
+        ranksep=1;
+        
+        node [label=""];
+        edge [arrowhead=none];
+        
+	subgraph cluster_0 {
+		color=white;
+		node [label="x", style=solid, shape=square];
+		in;
+	}
+
+    subgraph cluster_1 {
+		color=white;
+        node [style=solid, shape=circle];
+		x1 x2 x3 x4 x5;
+	}
+
+	subgraph cluster_2 {
+		color=white;
+		node [label="x_hat", style=solid, shape=square];
+		decode;
+	}
+	
+	subgraph cluster_3 {
+		color=white;
+		node [label="y", style=solid, shape=square];
+		encode;
+	}
+ 
+	subgraph cluster_4 {
+		color=white;
+        node [style=solid, shape=circle];
+		y1 y2 y3 y4 y5;
+	}
+
+ 	subgraph cluster_5 {
+		color=white;
+		node [label="y_hat", style=solid, shape=square];
+		out;
+	}
+	
+        in -> x1
+        in -> x2
+        in -> x3
+        in -> x4
+        in -> x5
+
+        x1 -> decode
+        x2 -> decode
+        x3 -> decode
+        x4 -> decode
+        x5 -> decode 
+ 
+        #x5 [xlabel="a", pos="-1.0,1.0"]
+ 
+        decode -> encode
+ 
+        encode -> y1
+        encode -> y2
+        encode -> y3
+        encode -> y4
+        encode -> y5
+ 
+        y1 -> out
+        y2 -> out
+        y3 -> out
+        y4 -> out
+        y5 -> out
+ 
+}
